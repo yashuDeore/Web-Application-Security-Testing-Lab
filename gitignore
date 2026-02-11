@@ -1,0 +1,63 @@
+# ========================================
+# .gitignore for VAPT Security Testing Lab
+# ========================================
+
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+.env
+
+# Sensitive data — NEVER commit these
+*.key
+*.pem
+*.cert
+*.p12
+passwords.txt
+credentials.txt
+secrets.txt
+config.local.*
+.env.local
+.env.production
+
+# Large wordlists (too big for GitHub)
+rockyou.txt
+wordlists/
+*.wordlist
+
+# Tool output (optional — add if you generate these)
+# sqlmap_output/
+# nikto_output/
+
+# Docker volumes
+docker-data/
+
+# Burp Suite project files (may contain sensitive session data)
+*.burp
+
+# Log files
+*.log
+logs/
+
+# Backup files
+*.bak
+*.backup
+*.orig

