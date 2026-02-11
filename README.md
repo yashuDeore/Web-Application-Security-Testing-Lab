@@ -251,15 +251,6 @@ vapt-project/
     └── scan_headers.sh          ← HTTP header checker
 ```
 
----
-
-## ⚠️ Disclaimer
-
-> This project was performed in a **controlled lab environment** using intentionally vulnerable applications (DVWA, OWASP Juice Shop). All testing was done on **local instances** with no impact on real systems.  
->
-> **Never perform security testing on systems you do not own or have explicit written permission to test. Unauthorized testing is illegal.**
-
----
 
 ## 📚 References
 
@@ -270,15 +261,3 @@ vapt-project/
 - [Burp Suite Documentation](https://portswigger.net/burp/documentation)
 - [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)
 
----
-
-## 👤 Author
-
-**[Your Name]**  
-Cybersecurity Enthusiast | VAPT | Ethical Hacking  
-📧 your.email@example.com  
-🔗 [LinkedIn](https://linkedin.com) | [GitHub](https://github.com)
-
----
-
-*⭐ If you found this useful, consider starring the repository!*
